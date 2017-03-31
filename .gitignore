@@ -1,0 +1,10 @@
+Library/
+ProjectSettings/
+Temp/
+log.txt
+MyHalpExamples.csproj
+MyHalpExamples.sln
+logs/
+.vs/
+*.user
+Assets/Plugins/
