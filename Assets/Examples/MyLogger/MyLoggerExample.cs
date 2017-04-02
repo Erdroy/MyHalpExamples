@@ -1,4 +1,5 @@
-﻿using MyHalp;
+﻿using System;
+using MyHalp;
 using UnityEngine;
 
 public class MyLoggerExample : MyComponent
@@ -12,6 +13,11 @@ public class MyLoggerExample : MyComponent
         MySettings.LogFile = "log.txt";
 
         MyLogger.Add("Hello, World!");
+
+        Debug.Log("LOG");
+        Debug.LogWarning("WARNING");
+        Debug.LogError("ERROR");
+        Debug.LogException(new Exception("FATAL"));
     }
 
     private void OnGUI()
