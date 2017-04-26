@@ -9,12 +9,32 @@ public class MyConsoleExample : MyComponent
         MySettings.UseDispatchedLogCallback = false;
         MySettings.UseLogCallback = true;
 
-        // init my console
+        // init console
         MyConsole.Init();
+
+        // init commands
+        MyCommands.Init();
 
         // say something!
         MyLogger.Add("Hello, World!");
         MyLogger.Add("Ow, shit, error.", MyLoggerLevel.Error);
+
+        MyCommands.Instance.RegisterCommand("default", "exit", delegate
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            UnityEngine.Application.Quit();
+#endif
+        });
+
+        MyCommands.Instance.RegisterCommand("default", "test", (string message, int integer) =>
+        {
+            MyLogger.Add("Message: " + message);
+            MyLogger.Add("Integer: " + integer);
+        });
+
+        // params will be correct, no need to check
     }
 
     protected override void OnTick()
